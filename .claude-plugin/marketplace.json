@@ -183,6 +183,12 @@
         "ref": "main"
       },
       "category": "security"
+    },
+    {
+      "name": "prompt-master",
+      "description": "One-click button that rewrites your rough draft into a clear, well-structured prompt before you send it",
+      "source": "./plugins/prompt-master",
+      "category": "productivity"
     }
   ],
   "renames": {
