@@ -4,7 +4,7 @@ Turns a rough, half-formed prompt into a clear, well-structured one before you s
 
 - Type your draft, then press **✨ Prompt Master** in the row just above the prompt box. Your draft is replaced with the rewrite so you can review and edit it before sending.
 - **↩ Undo** puts your original draft back.
-- Or run `/prompt-master <rough prompt>` and the rewrite lands in the prompt box.
+- Or run `/prompt-master <rough prompt>` and the rewrite lands in the prompt box. Where there is no prompt box it can fill (for example the mobile app on a cloud session), the rewrite is shown in the chat for you to copy.
 
 It keeps your intent, file names, code and constraints, and never adds requirements you did not give. Rewrites use the `sonnet` model through your session and count toward session usage.
 

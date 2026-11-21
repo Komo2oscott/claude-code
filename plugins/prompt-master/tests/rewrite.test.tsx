@@ -33,3 +33,18 @@ for (const surface of ['terminal', 'desktop'] as const) {
     await ui.unmount()
   })
 }
+
+test('/prompt-master shows the rewrite in chat when no prompt box can take it', async ($, on) => {
+  on('command.register', (_, e) => ({ value: { command: e.name } }) as never)
+  on('prompt.read', () => ({ value: { text: '', cursor: 0 } }) as never)
+  on('prompt.fill', (_, e) => ({ isFilled: false, text: '', cursor: 0 }) as never)
+  on('model.complete', () => ({ value: {
+    isAnswered: true,
+    text: 'Add dark mode to the settings page.',
+    usage: { input_tokens: 1, output_tokens: 1, cache_creation_input_tokens: 0, cache_read_input_tokens: 0 },
+  } }) as never)
+  on('command.run', () => ({ text: 'beneath' }))
+
+  const out = await $.command.run({ command: 'prompt-master', args: 'add dark mod to setings' } as never)
+  expect((out as { text?: string }).text).toContain('Add dark mode to the settings page.')
+})
