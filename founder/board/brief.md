@@ -76,7 +76,7 @@ The founder pushed back on round 2. Take these as stated by the founder; not ind
 - The founder wants the board to go deeper on the brand-led path rather than dismiss it.
 - In the founder's words: DIRTY "isn't just about unwashed lettuce ... it's about harkening to a time where we all played outside and just got dirty ... fun, let our hair down." The brand is "highly edgy and multifaceted with many characters and stories."
 - Characters and story assets visible on dirtyisbetter.com: Sir Leafs-A-Lot (arugula), Rosie's Iron Will (spinach), Kali-fornia Love (baby kale), Astro Greens (mixed leaf), Farmer Tim (the grower), "DIRTY Propaganda" posters, "Cool Kids Eat Dirt" tee, "Stay DIRTY" bandana, a merch line ("DIRTY Supply Co. — We started with greens and we didn't stop there"), a blog that runs a city "tour" series ("tour stop #1... Hollywood"), and the manifesto line "this revolution won't stay in the salad aisle."
-- Instagram (@dirtyisbetter) could not be read from this session (Instagram refused the request), so social following and engagement are UNKNOWN.
+- Instagram (@dirtyisbetter): read from founder screenshots, see founder/brand/instagram.md. 53 posts, 1,274 followers; bio says organic greens grown in USA fields; Gelson's Santa Barbara also stocks it; content has moved toward outdoor-lifestyle posts. Engagement UNKNOWN.
 
 ## The question for round 3
 Re-weigh with this information:
