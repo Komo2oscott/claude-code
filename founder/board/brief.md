@@ -36,3 +36,20 @@ Not specified by the founder. Inferred from the brand only: grocery shoppers who
 
 ## Unknown (open questions for the board to flag, not fill in)
 Retail price and wholesale price per container; cost of goods; shelf life versus pre-washed greens; number of stores and sell-through; acres/supply capacity and seasonality; customer acquisition cost; budget and funding; food-safety and regulatory position of selling unwashed ready-to-eat-looking greens; competitors on the same shelf.
+
+---
+
+# Round 2 update from the founder (2026-11-21)
+
+The founder answered the first board's open questions. Take these as stated by the founder; they are not independently verified.
+
+- **Food safety:** "top notch food safety built in and it's totally solid." The founder does not consider this an open risk.
+- **Pilot:** 7 Gelson's stores in Los Angeles for 11 weeks. Strong sales and repeat sales (unit volumes and repeat rate not given).
+- **Why people bought:** longer shelf life and no chemicals were the main selling features, especially during a cyclospora scare involving Taylor Farms (a large bagged-salad producer).
+- **Price and margin:** retail $6.99; 35% goes to the store, so DIRTY receives about $4.54 per container.
+- **Losses:** DIRTY lost $2 to $4 per container during the pilot, so the all-in cost per container was roughly $6.50 to $8.50. Cost breakdown (growing, packing labour, packaging, freight, the mesh bag, slotting) not given.
+- **Scale plan that failed to fund:** the founder sought $1M to reach 60 stores, which the founder says turns a profit. The raise did not succeed. Current cash and runway: UNKNOWN.
+- **The decision the board must now weigh:**
+  - **Option A — scale the greens:** get more processing machinery (financed some other way than the failed equity raise) to cut unit cost and reach enough stores to profit.
+  - **Option B — pivot the brand to shelf-stable:** keep the DIRTY brand, the founder's main asset, and move to shelf-stable products such as salsa or prepared meals.
+  - The board may propose a hybrid or a different path if the lens points there.
