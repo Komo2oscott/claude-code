@@ -17,13 +17,15 @@ Rules:
 - Output ONLY the rewritten prompt. No preamble, no quotes, no explanation.`
 
 // `given` is text passed to /prompt-master; otherwise the draft in the prompt box.
-async function rewrite($: Engine, given?: string) {
-  if ((await read($, status)) === 'working') return
+type Outcome = { filled: true } | { filled: false; text?: string; error?: string }
+
+async function rewrite($: Engine, given?: string): Promise<Outcome> {
+  if ((await read($, status)) === 'working') return { filled: false, error: 'already rewriting' }
   const text = given ?? (await $.prompt.read()).text
   const draft = text.trim()
   if (!draft) {
     $.ui.toast('Prompt Master: type a rough prompt first')
-    return
+    return { filled: false, error: 'nothing to rewrite' }
   }
   await update($, status, () => 'working')
   const r = await $.model.complete({
@@ -35,19 +37,27 @@ async function rewrite($: Engine, given?: string) {
   })
   if (!r.isAnswered || !r.text.trim()) {
     await update($, status, () => 'idle')
-    $.ui.toast(`Prompt Master: rewrite failed (${r.isAnswered ? 'empty reply' : r.reason})`)
-    return
+    const error = `rewrite failed (${r.isAnswered ? 'empty reply' : r.reason})`
+    $.ui.toast(`Prompt Master: ${error}`)
+    return { filled: false, error }
   }
   // Don't clobber the box if the person kept typing while we worked.
   const now = await $.prompt.read()
   if (given === undefined && now.text.trim() !== draft) {
     await update($, status, () => 'idle')
     $.ui.toast('Prompt Master: draft changed while rewriting, left it as is')
-    return
+    return { filled: false, error: 'draft changed while rewriting' }
   }
-  await $.prompt.fill({ text: r.text.trim(), mode: 'replace' })
+  const better = r.text.trim()
+  const { isFilled } = await $.prompt.fill({ text: better, mode: 'replace' })
+  if (!isFilled) {
+    // No prompt box to fill (e.g. a client that draws no composer): hand the text back.
+    await update($, status, () => 'idle')
+    return { filled: false, text: better }
+  }
   await update($, original, () => text)
   await update($, status, () => 'done')
+  return { filled: true }
 }
 
 async function undo($: Engine) {
@@ -57,6 +67,7 @@ async function undo($: Engine) {
   await update($, original, () => null)
   await update($, status, () => 'idle')
 }
+
 
 export const register: Register = on => {
   on('session.start', async ($, e, next) => {
@@ -71,8 +82,14 @@ export const register: Register = on => {
     if (!e.args.trim()) {
       return { text: 'Usage: /prompt-master <rough prompt>, or type your draft and press ✨ Prompt Master above the prompt box.' }
     }
-    void rewrite($, e.args)
-    return { text: 'Prompt Master is rewriting it — the result will land in your prompt box.' }
+    const out = await rewrite($, e.args)
+    if (out.filled) {
+      return { text: 'Prompt Master: the rewritten prompt is in your prompt box. Review it, then send.', isTextDisplayOnly: true }
+    }
+    if (out.text) {
+      return { text: `Prompt Master rewrite (copy it and send it as your next message):\n\n${out.text}`, isTextDisplayOnly: true }
+    }
+    return { text: `Prompt Master: ${out.error ?? 'nothing happened'}`, isTextDisplayOnly: true }
   })
 
   // Once the prompt is sent, forget the undo snapshot.
@@ -96,7 +113,7 @@ export const register: Register = on => {
         <Button
           key="rewrite"
           label={s === 'working' ? '✨ Rewriting…' : '✨ Prompt Master'}
-          onPress={() => rewrite($)}
+          onPress={() => void rewrite($)}
         />
         {canUndo ? <Button key="undo" label="↩ Undo" onPress={() => undo($)} /> : null}
         {s === 'done' ? <Text dimColor>Rewritten — review, then send</Text> : null}
